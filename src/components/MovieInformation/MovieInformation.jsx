@@ -1,7 +1,12 @@
 import React from 'react';
 
-const MovieInformation = () => (
-  <div>MovieInformation</div>
-);
+const MovieInformation = () => {
+  console.log('MovieInformation');
+  return (
+    <div>
+      <h1>Movie Information</h1>
+    </div>
+  );
+};
 
 export default MovieInformation;
