@@ -12,7 +12,7 @@ ReactDOM.render(
   <ThemeProvider theme={theme}>
     <BrowserRouter>
       <App />
-    </BrowserRouter>,
+    </BrowserRouter>
   </ThemeProvider>,
   document.getElementById('root'),
 );
