@@ -10,7 +10,7 @@ import { Sidebar } from '..';
 import useStyles from './styles';
 
 const Navbar = () => {
-  const [mobileOpen, setmobileOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
   const isMobile = useMediaQuery('(max-width: 600px)');
   const theme = useTheme();
@@ -25,7 +25,7 @@ const Navbar = () => {
               color="inherit"
               edge="start"
               style={{ outline: 'none' }}
-              onClick={() => {}}
+              onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
               className={classes.menuButton}
             >
               <Menu />
@@ -61,14 +61,16 @@ const Navbar = () => {
               variant="temporary"
               anchor="right"
               open={mobileOpen}
+              onClose={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
               className={classes.drawerBackground}
               classes={{ paper: classes.drawerPaper }}
+              ModalProps={{ keepMounted: true }}
             >
-              <Sidebar setmobileOpen={setmobileOpen} />
+              <Sidebar setMobileOpen={setMobileOpen} />
             </Drawer>
           ) : (
             <Drawer classes={{ paper: classes.drawerPaper }} variant="permanent" open>
-              <Sidebar setmobileOpen={setmobileOpen} />
+              <Sidebar setMobileOpen={setMobileOpen} />
             </Drawer>
           )}
         </nav>
