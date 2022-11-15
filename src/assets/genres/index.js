@@ -10,7 +10,7 @@ import fantasy from './fantasy.png';
 import scienceFiction from './fiction.png';
 import history from './history.png';
 import horror from './horror.png';
-import mistery from './mistery.png';
+import mystery from './mystery.png';
 import music from './music.png';
 import romance from './romance.png';
 import thriller from './thriller.png';
@@ -35,7 +35,7 @@ export default {
   'science fiction': scienceFiction,
   history,
   horror,
-  mistery,
+  mystery,
   music,
   romance,
   thriller,
