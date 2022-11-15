@@ -5,6 +5,8 @@ import { useTheme } from '@mui/material/styles';
 
 import useStyles from './styles';
 
+import { useGetGenresQuery } from '../../services/TMDB';
+
 const categories = [
   { label: 'Popular', value: 'popular' },
   { label: 'Top Rated', value: 'top_rated' },
@@ -26,6 +28,9 @@ const blueLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2
 const Sidebar = ({ setMobileOpen }) => {
   const theme = useTheme();
   const classes = useStyles();
+  const { data, isFetching } = useGetGenresQuery();
+
+  console.log(data);
 
   return (
     <>
@@ -53,13 +58,17 @@ const Sidebar = ({ setMobileOpen }) => {
       <Divider />
       <List>
         <ListSubheader>Genres</ListSubheader>
-        {demoCategories.map(({ label, value }) => (
-          <Link key={value} className={classes.links} to="/">
+        {isFetching ? (
+          <Box display="flex" justifyContent="center">
+            <CircularProgress size="4rem" />
+          </Box>
+        ) : data.genres.map(({ name, id }) => (
+          <Link key={name} className={classes.links} to="/">
             <ListItem onClick={() => {}} button>
               {/* <ListItemIcon>
                 <img src={redLogo} className={classes.genreImages} height={30} />
               </ListItemIcon> */}
-              <ListItemText primary={label} />
+              <ListItemText primary={name} />
             </ListItem>
           </Link>
         ))}
