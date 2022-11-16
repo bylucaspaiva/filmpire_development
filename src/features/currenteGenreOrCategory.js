@@ -15,5 +15,5 @@ export const genreOrCategory = createSlice({
   },
 });
 
-export const { selectGenreOrCategory } = genreOrCategory;
+export const { selectGenreOrCategory } = genreOrCategory.actions;
 export default genreOrCategory.reducer;
