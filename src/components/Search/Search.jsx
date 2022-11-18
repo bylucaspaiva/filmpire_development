@@ -5,10 +5,33 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { ClassNames } from '@emotion/react';
 
+import useStyles from './styles';
+
 const Search = () => {
+  const classes = useStyles();
   console.log('search');
+  const [query, setQuery] = useState('');
+
+  const handleKeyPress = () => {
+
+  };
   return (
-    <div className={ClassNames.searchContainer}>Search...</div>
+    <div className={classes.searchContainer}>
+      <TextField
+        onKeyPress={handleKeyPress}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        variant="standard"
+        InputProps={{
+          className: classes.input,
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}
+      />
+    </div>
   );
 };
 
