@@ -9,11 +9,13 @@ import useStyles from './styles';
 
 const Search = () => {
   const classes = useStyles();
-  console.log('search');
   const [query, setQuery] = useState('');
+  const dispatch = useDispatch();
 
-  const handleKeyPress = () => {
-
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      dispatch(searchMovie(query));
+    }
   };
   return (
     <div className={classes.searchContainer}>
