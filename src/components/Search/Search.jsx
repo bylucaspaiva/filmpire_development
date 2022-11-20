@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { ClassNames } from '@emotion/react';
 
+import { searchMovie } from '../../features/currenteGenreOrCategory';
+
 import useStyles from './styles';
 
 const Search = () => {
