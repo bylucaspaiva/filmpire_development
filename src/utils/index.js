@@ -21,3 +21,21 @@ export const fetchToken = async () => {
     console.log('Sorry your token cannot be created.');
   }
 };
+
+export const getSessionId = async () => {
+  const token = localStorage.getItem('request_token');
+
+  if (token) {
+    try {
+      const { data: { session_id } } = await moviesApi.post('authentication/session/new', {
+        request_token: token,
+      });
+
+      localStorage.setItem('session_id', session_id);
+
+      return session_id;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
