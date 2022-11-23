@@ -30,12 +30,13 @@ export const createSessionId = async () => {
       const { data: { session_id } } = await moviesApi.post('authentication/session/new', {
         request_token: token,
       });
-
+      console.log('session1: ', session_id);
       localStorage.setItem('session_id', session_id);
+      console.log('session2: ', session_id);
 
       return session_id;
     } catch (error) {
-      console.log(error);
+      console.log('this is a error: ', error);
     }
   }
 };

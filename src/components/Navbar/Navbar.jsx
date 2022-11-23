@@ -4,6 +4,8 @@ import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } fr
 import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, userSelector } from '../../features/auth';
 import { fetchToken, createSessionId, moviesApi } from '../../utils';
 
 import { Sidebar, Search } from '..';
@@ -11,27 +13,42 @@ import { Sidebar, Search } from '..';
 import useStyles from './styles';
 
 const Navbar = () => {
+  const { isAuthenticated, user } = useSelector(userSelector);
   const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
   const isMobile = useMediaQuery('(max-width: 600px)');
   const theme = useTheme();
-  const isAuthenticated = false;
+  const dispatch = useDispatch();
 
-  const token = localStorage.getItem('request_tooken');
+  const token = localStorage.getItem('request_token');
   const sessionIdFromLocalStorage = localStorage.getItem('session_id');
+
+  console.log(user, 'authentication: ', isAuthenticated);
 
   useEffect(() => {
     const logInUser = async () => {
+      console.log(token);
       if (token) {
+        console.log('2: ', token);
         if (sessionIdFromLocalStorage) {
-          const { data: userData } = await moviesApi.get(`/account?session_id${sessionIdFromLocalStorage}`);
-        } else {
-          const sessionId = await createSessionId();
+          console.log(1);
 
-          const { data: userData } = await moviesApi.get(`/account?session_id${sessionId}`);
+          const { data: userData } = await moviesApi.get(`/account?session_id=${sessionIdFromLocalStorage}`);
+          console.log('data1: ', userData);
+          dispatch(setUser(userData));
+        } else {
+          console.log(2);
+
+          const sessionId = await createSessionId();
+          const { data: userData } = await moviesApi.get(`/account?session_id=${sessionId}`);
+          console.log('data2: ', userData);
+
+          dispatch(setUser(userData));
         }
       }
     };
+
+    logInUser();
   }, [token]);
 
   return (
@@ -59,7 +76,7 @@ const Navbar = () => {
                 Login &nbsp; <AccountCircle />
               </Button>
             ) : (
-              <Button color="inherit" component={Link} to="/profile/:id" className={classes.linkButton} onClick={() => {}}>
+              <Button color="inherit" component={Link} to={`/profile/${user.id}`} className={classes.linkButton} onClick={() => {}}>
                 {!isMobile && <>My Movies &nbsp;</> }
                 <Avatar
                   style={{ width: '30px', height: '30px' }}
