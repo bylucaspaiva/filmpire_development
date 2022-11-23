@@ -24,7 +24,7 @@ const Navbar = () => {
     const logInUser = async () => {
       if (token) {
         if (sessionIdFromLocalStorage) {
-          const { data: userData } = await moviesApi.get(`/account?session_id${sessionId}`);
+          const { data: userData } = await moviesApi.get(`/account?session_id${sessionIdFromLocalStorage}`);
         } else {
           const sessionId = await createSessionId();
 
