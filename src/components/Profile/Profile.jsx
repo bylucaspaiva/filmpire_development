@@ -10,7 +10,8 @@ const Profile = () => {
   console.log(user.username);
 
   const logout = () => {
-
+    localStorage.clear(0);
+    window.location.href = '/';
   };
 
   return (
