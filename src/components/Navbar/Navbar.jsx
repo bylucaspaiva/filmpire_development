@@ -66,7 +66,7 @@ const Navbar = () => {
               <Menu />
             </IconButton>
           )}
-          <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
+          <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => { }}>
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           {!isMobile && <Search />}
@@ -76,8 +76,14 @@ const Navbar = () => {
                 Login &nbsp; <AccountCircle />
               </Button>
             ) : (
-              <Button color="inherit" component={Link} to={`/profile/${user.id}`} className={classes.linkButton} onClick={() => {}}>
-                {!isMobile && <>My Movies &nbsp;</> }
+              <Button
+                color="inherit"
+                component={Link}
+                to={`/profile/${user.id}`}
+                className={classes.linkButton}
+                onClick={() => { }}
+              >
+                {!isMobile && <>My Movies &nbsp;</>}
                 <Avatar
                   style={{ width: '30px', height: '30px' }}
                   alt="Profile"
