@@ -7,8 +7,7 @@ import { userSelector, setUser } from '../../features/auth';
 const Profile = () => {
   //* This variable must have the same name it has in store.js
   const { user } = useSelector(userSelector);
-  console.log(user.username);
-
+  const favoriteMovies = [];
   const logout = () => {
     localStorage.clear(0);
     window.location.href = '/';
@@ -24,6 +23,13 @@ const Profile = () => {
           Logout &nbsp;<ExitToApp />
         </Button>
       </Box>
+      {!favoriteMovies.length
+        ? <Typography variant="h5">Add favorites or watch some movies to see them here. </Typography>
+        : (
+          <Box>
+            FAVORITE MOVIES
+          </Box>
+        )}
     </Box>
   );
 };
