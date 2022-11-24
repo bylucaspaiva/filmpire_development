@@ -2,10 +2,11 @@ import React from 'react';
 import { Modal, Typography, Button, ButtonGroup, Grid, Box, CircularProgress, useMediaQuery, Rating } from '@mui/material';
 import { Movie as MovieIcon, Theaters, Language, PlusOne, Favorite, FavoriteBorderOutlined, Remove, ArrowBack } from '@mui/icons-material';
 import { Link, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { ClassNames } from '@emotion/react';
+import { selectGenreOrCategory } from '../../features/currenteGenreOrCategory';
+
 import useStyles from './styles';
 import genreIcons from '../../assets/genres';
 
@@ -13,6 +14,7 @@ import { useGetMovieQuery } from '../../services/TMDB';
 
 const MovieInformation = () => {
   console.log('MovieInformation');
+  const dispatch = useDispatch();
   const { id } = useParams();
   const { data, isFetching, error } = useGetMovieQuery(id);
   const classes = useStyles();
@@ -63,7 +65,7 @@ const MovieInformation = () => {
         </Grid>
         <Grid item className={classes.genresContainer}>
           {data?.genres?.map((genre, i) => (
-            <Link key={genre.name} className={classes.links} to="/" onClick={() => {}}>
+            <Link key={genre.name} className={classes.links} to="/" onClick={() => dispatch(selectGenreOrCategory(genre.id))}>
               <img src={genreIcons[genre.name.toLowerCase()]} className={classes.genreImage} height={30} />
               <Typography color="textPrimary" variant="subtitle1">
                 {genre?.name}
