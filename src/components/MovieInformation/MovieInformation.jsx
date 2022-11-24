@@ -84,10 +84,25 @@ const MovieInformation = () => {
         </Typography>
         <Grid item container spacing={2}>
           {data && data.credits?.cast?.map((character, i) => (
+            character.profile_path && (
             <Grid key={i} item xs={4} md={2} component={Link} to={`/actors/${character.id}`} style={{ textDecoration: 'none' }}>
               <img className={classes.castImages} src={`https://image.tmdb.org/t/p/w500${character.profile_path}`} alt={character.name} />
+              <Typography color="textPrimary">{character?.name}</Typography>
+              <Typography color="textSecondary">{character.character.split('/')[0]}</Typography>
             </Grid>
-          ))}
+            )
+          )).slice(0, 6)}
+        </Grid>
+        <Grid item container style={{ marginTop: '2rem' }}>
+          <div className={classes.buttonsContainer}>
+            <Grid item xs={12} sm={6} className={classes.buttonsContainer}>
+              <ButtonGroup size="small" variant="outlined">
+                <Button target="_blank" rel="noopener noreferrer" href={data?.homepage} endIcon={<Language />}>
+                  Website
+                </Button>
+              </ButtonGroup>
+            </Grid>
+          </div>
         </Grid>
       </Grid>
     </Grid>
