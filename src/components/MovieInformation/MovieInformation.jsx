@@ -20,6 +20,14 @@ const MovieInformation = () => {
     );
   }
 
+  if (error) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <Link to="/">Something has gone wrong - Go back!</Link>
+      </Box>
+    );
+  }
+
   return (
     <div>
       <h1>Movie Information - {id}</h1>
