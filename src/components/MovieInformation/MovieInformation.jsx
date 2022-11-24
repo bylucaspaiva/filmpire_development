@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
+import { ClassNames } from '@emotion/react';
 import { useGetMovieQuery } from '../../services/TMDB';
 
 const MovieInformation = () => {
@@ -29,9 +30,9 @@ const MovieInformation = () => {
   }
 
   return (
-    <div>
-      <h1>Movie Information - {id}</h1>
-    </div>
+    <Grid container className={classes.containerSpaceAround}>
+      Test
+    </Grid>
   );
 };
 
