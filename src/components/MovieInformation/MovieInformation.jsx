@@ -48,8 +48,6 @@ const MovieInformation = () => {
     );
   }
 
-  console.log('move: ', data);
-
   return (
     <Grid container className={classes.containerSpaceAround}>
       <Grid item sm={12} lg={4}>

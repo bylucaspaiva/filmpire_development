@@ -48,3 +48,4 @@ export const {
   useGetMovieQuery,
   useGetRecomendationsQuery,
 } = tmdbApi;
+console.log(useGetRecomendationsQuery);

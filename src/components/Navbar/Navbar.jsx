@@ -23,15 +23,11 @@ const Navbar = () => {
   const token = localStorage.getItem('request_token');
   const sessionIdFromLocalStorage = localStorage.getItem('session_id');
 
-  console.log(user, 'authentication: ', isAuthenticated);
-
   useEffect(() => {
     const logInUser = async () => {
-      console.log(token);
       if (token) {
         if (sessionIdFromLocalStorage) {
           const { data: userData } = await moviesApi.get(`/account?session_id=${sessionIdFromLocalStorage}`);
-          console.log('data1: ', userData);
           dispatch(setUser(userData));
         } else {
           const sessionId = await createSessionId();
