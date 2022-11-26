@@ -51,6 +51,14 @@ const Actors = () => {
           <Typography variant="body2" gutterBottom>
             { data?.biography || 'Sorry, no biography yet...'}
           </Typography>
+          <Box marginTop="2rem" display="flex" justifyContent="space-around">
+            <Button variant="contained" color="primary" target="_blank" href={`https://www.imdb.com/name/${data?.imdb_id}`}>
+              IMDB
+            </Button>
+            <Button startIcon={<ArrowBack />} onClick={() => history.goBack()} color="primary">
+              Back
+            </Button>
+          </Box>
         </Grid>
       </Grid>
     </>
