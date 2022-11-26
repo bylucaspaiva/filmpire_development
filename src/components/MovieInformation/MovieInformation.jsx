@@ -9,7 +9,7 @@ import { ClassNames } from '@emotion/react';
 import { selectGenreOrCategory } from '../../features/currenteGenreOrCategory';
 import useStyles from './styles';
 import genreIcons from '../../assets/genres';
-import { useGetMovieQuery, useGetRecomendationsQuery } from '../../services/TMDB';
+import { useGetMovieQuery, useGetRecommendationsQuery } from '../../services/TMDB';
 import { MovieList } from '..';
 
 const MovieInformation = () => {
@@ -20,9 +20,9 @@ const MovieInformation = () => {
   const classes = useStyles();
   const isMovieFavorited = true;
   const isMovieWatchListed = true;
-  const { data: recomendations, isFetching: isRecomendationsFetching } = useGetRecomendationsQuery({ list: '/recomendations', movie_id: id });
+  const { data: recommendations, isFetching: isRecommendationsFetching } = useGetRecommendationsQuery({ list: '/recommendations', movie_id: id });
 
-  console.log(recomendations, isRecomendationsFetching);
+  console.log(recommendations, isRecommendationsFetching);
 
   const addToFavorites = () => {
 
@@ -136,8 +136,8 @@ const MovieInformation = () => {
         <Typography variant="h3" gutterBottom align="center">
           You Might Also Like
         </Typography>
-        { recomendations
-          ? <MovieList movies={recomendations} />
+        { recommendations
+          ? <MovieList movies={recommendations} />
           : <Box>Sorry, nothing was found! </Box>}
       </Box>
     </Grid>
