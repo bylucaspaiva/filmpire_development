@@ -14,7 +14,6 @@ const Pagination = () => {
         {currentPage}
       </Typography>
       <Button className={classes.button} variant="contained" color="primary" type="button">Next</Button>
-
     </div>
   );
 };
