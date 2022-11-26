@@ -3,8 +3,7 @@ import { Box, CircularProgress, useMediaQuery, Typography } from '@mui/material'
 import { useSelector } from 'react-redux';
 
 import { useGetMoviesQuery } from '../../services/TMDB';
-import MovieList from '../MovieList/MovieList';
-
+import { MovieList, Pagination } from '..';
 import { selectGenreOrCategory } from '../../features/currenteGenreOrCategory';
 
 const Movies = () => {
@@ -36,6 +35,7 @@ const Movies = () => {
   return (
     <div>
       <MovieList movies={data} />
+      <Pagination />
     </div>
   );
 };
