@@ -3,14 +3,14 @@ import { Modal, Typography, Button, ButtonGroup, Grid, Box, CircularProgress, us
 import { Movie as MovieIcon, Theaters, Language, PlusOne, Favorite, FavoriteBorderOutlined, Remove, ArrowBack } from '@mui/icons-material';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { ClassNames } from '@emotion/react';
 import { selectGenreOrCategory } from '../../features/currenteGenreOrCategory';
-
 import useStyles from './styles';
 import genreIcons from '../../assets/genres';
-
-import { useGetMovieQuery } from '../../services/TMDB';
+import { useGetMovieQuery, useGetRecomendationsQuery } from '../../services/TMDB';
+import { MovieList } from '..';
 
 const MovieInformation = () => {
   console.log('MovieInformation');
@@ -20,6 +20,9 @@ const MovieInformation = () => {
   const classes = useStyles();
   const isMovieFavorited = true;
   const isMovieWatchListed = true;
+  const { data: recomendations, isFetching: isRecomendationsFetching } = useGetRecomendationsQuery({ list: '/recomendations', movie_id: id });
+
+  console.log(recomendations, isRecomendationsFetching);
 
   const addToFavorites = () => {
 
@@ -135,7 +138,9 @@ const MovieInformation = () => {
         <Typography variant="h3" gutterBottom align="center">
           You Might Also Like
         </Typography>
-
+        { recomendations
+          ? <MovieList movies={recomendations} />
+          : <Box>Sorry, nothing was found! </Box>}
       </Box>
     </Grid>
   );

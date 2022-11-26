@@ -37,7 +37,7 @@ export const tmdbApi = createApi({
     }),
     //* Get user specific lists
     getRecomendations: builder.query({
-      query: (movie_id, list) => `/movie/${movie_id}/${list}?api_key=${tmdmApiKey}`,
+      query: ({ movie_id, list }) => `/movie/${movie_id}/${list}?api_key=${tmdbApiKey}`,
     }),
   }),
 });
