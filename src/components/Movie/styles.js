@@ -28,7 +28,7 @@ export default makeStyles((theme) => ({
     color: theme.palette.text.primary,
     /// ellipsis: add dots on final of large titles
     textOverflow: 'ellipsis',
-    width: '230px',
+    width: '180px',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     marginTop: '10px',
