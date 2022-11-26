@@ -2,14 +2,17 @@ import React from 'react';
 import { Button, Box, CircularProgress, Grid, Typography } from '@mui/material';
 import { useParams, useHistory } from 'react-router-dom';
 import { ArrowBack } from '@mui/icons-material';
-import { useGetActorDetailsQuery } from '../../services/TMDB';
+import { useGetActorDetailsQuery, useGetMoviesByActorIdQuery } from '../../services/TMDB';
+import { MovieList } from '..';
 import useStyles from './styles';
 
 const Actors = () => {
   const { id } = useParams();
   const { history } = useHistory();
+  const page = 1;
   console.log('id', id);
   const { data, isFetching, error } = useGetActorDetailsQuery(id);
+  const { data: movies } = useGetMoviesByActorIdQuery({ id, page });
   const classes = useStyles();
   console.log('teste', data, isFetching, error);
 
@@ -61,6 +64,13 @@ const Actors = () => {
           </Box>
         </Grid>
       </Grid>
+      <Box margin="2rem 0">
+        <Typography variant="h2" gutterBottom align="center">
+          Movies
+        </Typography>
+        {movies && <MovieList movies={movies} numberOfMovies={12} />}
+      </Box>
+
     </>
   );
 };
