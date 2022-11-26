@@ -137,7 +137,7 @@ const MovieInformation = () => {
           You Might Also Like
         </Typography>
         { recommendations
-          ? <MovieList movies={recommendations} />
+          ? <MovieList movies={recommendations} numberOfMovies={12} />
           : <Box>Sorry, nothing was found! </Box>}
       </Box>
     </Grid>
