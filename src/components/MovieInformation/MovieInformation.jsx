@@ -11,26 +11,41 @@ import useStyles from './styles';
 import genreIcons from '../../assets/genres';
 import { useGetMovieQuery, useGetRecommendationsQuery } from '../../services/TMDB';
 import { MovieList } from '..';
+import { userSelector } from '../../features/auth';
 
 const MovieInformation = () => {
+  const { user } = useSelector(userSelector);
   const dispatch = useDispatch();
   const { id } = useParams();
   const { data, isFetching, error } = useGetMovieQuery(id);
   const classes = useStyles();
-  const isMovieFavorited = true;
-  const isMovieWatchListed = true;
+  const i = true;
   const [open, setOpen] = useState(false);
+  const [isMovieFavorited, setIsMovieFavorited] = useState(false);
+  const [isMovieWatchListed, setIsMovieWatchListed] = useState(false);
 
   const { data: recommendations, isFetching: isRecommendationsFetching } = useGetRecommendationsQuery({ list: '/recommendations', movie_id: id });
 
   console.log(recommendations, isRecommendationsFetching);
 
-  const addToFavorites = () => {
+  const addToFavorites = async () => {
+    await axios.post(`https://api.themoviedb.org/3/account/${user.id}/favorite?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id={localStorage.getItem('session_id)}`, {
+      media_type: 'movie',
+      media_id: id,
+      favorite: !isMovieFavorited,
+    });
 
+    setIsMovieFavorited((prevState) => !prevState);
   };
 
-  const addToWatchList = () => {
+  const addToWatchList = async () => {
+    await axios.post(`https://api.themoviedb.org/3/account/${user.id}/watchlist?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id={localStorage.getItem('session_id)}`, {
+      media_type: 'movie',
+      media_id: id,
+      favorite: !isMovieWatchListed,
+    });
 
+    setIsMovieWatchListed((prevState) => !prevState);
   };
 
   if (isFetching) {
