@@ -3,13 +3,12 @@ import { Button, Box, CircularProgress, Grid, Typography } from '@mui/material';
 import { useParams, useHistory } from 'react-router-dom';
 import { ArrowBack } from '@mui/icons-material';
 import { useGetActorDetailsQuery, useGetMoviesByActorIdQuery } from '../../services/TMDB';
-import { MovieList } from '..';
+import { MovieList, Pagination } from '..';
 import useStyles from './styles';
 
-const Actors = () => {
+const Actors = ({ page, totalPages, currentPage }) => {
   const { id } = useParams();
   const { history } = useHistory();
-  const page = 1;
   console.log('id', id);
   const { data, isFetching, error } = useGetActorDetailsQuery(id);
   const { data: movies } = useGetMoviesByActorIdQuery({ id, page });
@@ -69,6 +68,7 @@ const Actors = () => {
           Movies
         </Typography>
         {movies && <MovieList movies={movies} numberOfMovies={12} />}
+        <Pagination currentPage={page} setPage={setPage} totalPages={movies?.total_pages} />
       </Box>
 
     </>
