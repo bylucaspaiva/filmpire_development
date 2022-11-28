@@ -7,13 +7,21 @@ const Pagination = () => {
   const classes = useStyles();
   const currentPage = 1;
 
+  const handlePrev = () => {
+
+  };
+
+  const handleNext = () => {
+
+  };
+
   return (
     <div className={classes.container}>
-      <Button className={classes.button} variant="contained" color="primary" type="button">Prev</Button>
+      <Button className={classes.button} onClick={handlePrev} variant="contained" color="primary" type="button">Prev</Button>
       <Typography variant="h4" className={classes.pageNumber}>
         {currentPage}
       </Typography>
-      <Button className={classes.button} variant="contained" color="primary" type="button">Next</Button>
+      <Button className={classes.button} onClick={handleNext} variant="contained" color="primary" type="button">Next</Button>
     </div>
   );
 };
