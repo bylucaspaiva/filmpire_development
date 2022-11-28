@@ -9,11 +9,11 @@ const Pagination = ({ currentPage, totalPages, setPage }) => {
   if (totalPages === 0) return null;
 
   const handlePrev = () => {
-    if (currenPage !== 1) { setPage((prevPage) => prevPage - 1); }
+    if (currentPage !== 1) { setPage((prevPage) => prevPage - 1); }
   };
 
   const handleNext = () => {
-    if (currenPage !== totalPage) { setPage((prevPage) => prevPage + 1); }
+    if (currentPage !== totalPages) { setPage((prevPage) => prevPage + 1); }
   };
 
   return (
