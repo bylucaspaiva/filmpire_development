@@ -6,7 +6,7 @@ import { useGetActorDetailsQuery, useGetMoviesByActorIdQuery } from '../../servi
 import { MovieList, Pagination } from '..';
 import useStyles from './styles';
 
-const Actors = ({ page, totalPages, currentPage }) => {
+const Actors = ({ page, setPage, currentPage }) => {
   const { id } = useParams();
   const { history } = useHistory();
   const { data, isFetching, error } = useGetActorDetailsQuery(id);
