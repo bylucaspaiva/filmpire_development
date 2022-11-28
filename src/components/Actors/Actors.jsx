@@ -12,7 +12,6 @@ const Actors = ({ page, totalPages, currentPage }) => {
   const { data, isFetching, error } = useGetActorDetailsQuery(id);
   const { data: movies } = useGetMoviesByActorIdQuery({ id, page });
   const classes = useStyles();
-  console.log('teste', data, isFetching, error);
 
   if (isFetching) {
     return (
