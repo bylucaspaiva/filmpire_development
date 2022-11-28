@@ -34,7 +34,7 @@ const Movies = () => {
   if (error) return 'An error as ocurred.';
   return (
     <div>
-      <MovieList movies={data} />
+      <MovieList movies={data} numberOfMovis={24} />
       <Pagination currentPage={page} setPage={setPage} totalPages={data.total_pages} />
     </div>
   );
