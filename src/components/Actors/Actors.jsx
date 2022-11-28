@@ -9,7 +9,6 @@ import useStyles from './styles';
 const Actors = ({ page, totalPages, currentPage }) => {
   const { id } = useParams();
   const { history } = useHistory();
-  console.log('id', id);
   const { data, isFetching, error } = useGetActorDetailsQuery(id);
   const { data: movies } = useGetMoviesByActorIdQuery({ id, page });
   const classes = useStyles();
