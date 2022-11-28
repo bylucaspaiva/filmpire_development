@@ -3,9 +3,8 @@ import { Typography, Button } from '@mui/material';
 
 import useStyles from './styles';
 
-const Pagination = () => {
+const Pagination = ({ currentPage, totalPages, setPage }) => {
   const classes = useStyles();
-  const currentPage = 1;
 
   const handlePrev = () => {
 
