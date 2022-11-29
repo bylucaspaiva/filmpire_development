@@ -12,6 +12,7 @@ export default makeStyles((theme) => ({
   },
   poster: {
     borderRadius: '20px',
+    margin: '0 auto',
     boxShadow: '0.5em 1em 1em rgb(64, 64, 69)',
     width: '80%',
     height: '80%',
@@ -34,7 +35,6 @@ export default makeStyles((theme) => ({
   },
   genreImage: {
     filter: theme.palette.mode === 'dark' && 'invert(1)',
-    marginRight: '10px',
   },
   links: {
     display: 'flex',
