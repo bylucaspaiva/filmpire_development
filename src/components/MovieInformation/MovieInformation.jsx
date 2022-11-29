@@ -9,7 +9,7 @@ import { ClassNames } from '@emotion/react';
 import { selectGenreOrCategory } from '../../features/currenteGenreOrCategory';
 import useStyles from './styles';
 import genreIcons from '../../assets/genres';
-import { useGetMovieQuery, useGetRecommendationsQuery } from '../../services/TMDB';
+import { useGetMovieQuery, useGetRecommendationsQuery, useGetListQuery } from '../../services/TMDB';
 import { MovieList } from '..';
 import { userSelector } from '../../features/auth';
 
@@ -17,13 +17,15 @@ const MovieInformation = () => {
   const { user } = useSelector(userSelector);
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { data, isFetching, error } = useGetMovieQuery(id);
   const classes = useStyles();
-  const i = true;
   const [open, setOpen] = useState(false);
   const [isMovieFavorited, setIsMovieFavorited] = useState(false);
   const [isMovieWatchListed, setIsMovieWatchListed] = useState(false);
 
+  const { data: favoriteMovies } = useGetListQuery({ listName: 'favorite/movies', accountId: user.id, sessionId: localStorage.getItem('session_id'), page: 1 });
+  const { data: watchlistMovies } = useGetListQuery({ listName: 'watchlist/movies', accountId: user.id, sessionId: localStorage.getItem('session_id'), page: 1 });
+
+  const { data, isFetching, error } = useGetMovieQuery(id);
   const { data: recommendations, isFetching: isRecommendationsFetching } = useGetRecommendationsQuery({ list: '/recommendations', movie_id: id });
 
   console.log(recommendations, isRecommendationsFetching);
