@@ -22,6 +22,7 @@ const Sidebar = ({ setMobileOpen }) => {
   const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
   const theme = useTheme();
   const classes = useStyles();
+  console.log('classes1:', classes);
   const { data, isFetching } = useGetGenresQuery();
   const dispatch = useDispatch();
 
@@ -30,7 +31,7 @@ const Sidebar = ({ setMobileOpen }) => {
       <Link to="/" className={classes.imageLink}>
         <img
           className={classes.image}
-          src={redLogo}
+          src={theme.palette.mode === 'light' ? blueLogo : redLogo}
           alt="filmpire logo"
         />
       </Link>

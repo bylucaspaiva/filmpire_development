@@ -8,6 +8,7 @@ import { Actors, Navbar, Movies, Profile, MovieInformation } from '.';
 
 const App = () => {
   const classes = useStyles();
+  console.log('classes:', classes);
 
   return (
     <div className={classes.root}>
