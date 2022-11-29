@@ -49,11 +49,13 @@ const MovieInformation = () => {
     setIsMovieFavorited((prevState) => !prevState);
   };
 
+  console.log({ isMovieWatchListed });
+
   const addToWatchList = async () => {
     await axios.post(`https://api.themoviedb.org/3/account/${user.id}/watchlist?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id=${localStorage.getItem('session_id')}`, {
       media_type: 'movie',
       media_id: id,
-      favorite: !isMovieWatchListed,
+      watchlist: !isMovieWatchListed,
     });
 
     setIsMovieWatchListed((prevState) => !prevState);
