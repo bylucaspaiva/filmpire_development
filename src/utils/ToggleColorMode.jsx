@@ -6,9 +6,17 @@ export const ColorModeContext = createContext();
 const ToggleColorMode = ({ children }) => {
   const [mode, setMode] = useState('light');
 
-  const theme = useMemo();
+  const toggleColorMode = () => {
+    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+  };
+
+  const theme = useMemo(() => createTheme({
+    palette: {
+      mode,
+    },
+  }), [mode]);
   return (
-    <div>ToggleColorMode</div>
+    <ColorModeContext.Provider value={{ mode, setMode, toggleColorMode }} />
   );
 };
 
