@@ -16,7 +16,11 @@ const ToggleColorMode = ({ children }) => {
     },
   }), [mode]);
   return (
-    <ColorModeContext.Provider value={{ mode, setMode, toggleColorMode }} />
+    <ColorModeContext.Provider value={{ mode, setMode, toggleColorMode }}>
+      <ThemeProvider theme={theme}>
+        {children}
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 };
 
