@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchToken } from '../utils';
 import { ColorModeContext } from '../utils/ToggleColorMode';
-import { selectGenreOrCategory } from '../features/currenteGenreOrCategory';
+import { selectGenreOrCategory, searchMovie } from '../features/currenteGenreOrCategory';
 
 const useAlan = () => {
   const { setMode } = useContext(ColorModeContext);
@@ -14,14 +14,17 @@ const useAlan = () => {
 
   useEffect(() => {
     alanBtn({
-      key: 'd5acd0717244d1da5f13dd8a1c0092fd2e956eca572e1d8b807a3e2338fdd0dc/stage',
-      onCommand: ({ command, mode, genres, genre }) => {
-        console.log('command: ', command, 'mode: ', mode);
+      key: process.env.REACT_APP_ALAN_SDK_KEY,
+      onCommand: ({ command, mode, genres, genreOrCategory, query }) => {
         if (command === 'chooseGenre') {
-          const foundGenre = genres.find((g) => g.name.toLowerCase() === genre.toLowerCase());
+          const foundGenre = genres.find((g) => g.name.toLowerCase() === genreOrCategory.toLowerCase());
           if (foundGenre) {
-            history.pushState('/');
+            history.push('/');
             dispatch(selectGenreOrCategory(foundGenre.id));
+          } else {
+            const category = genreOrCategory.startsWith('top') ? 'top_rated' : genreOrCategory;
+            history.pushState('/');
+            dispatch(selectGenreOrCategory(category));
           }
         } else if (command === 'changeMode') {
           if (mode === 'light') {
@@ -34,10 +37,12 @@ const useAlan = () => {
         } else if (command === 'logout') {
           localStorage.clear();
           history.push('/');
+        } else if (command === 'search') {
+          dispatch(searchMovie(query));
         }
       },
     });
-  }, [setMode]);
+  }, []);
 };
 
 export default useAlan;

@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Box, CircularProgress, useMediaQuery, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 
 import { useGetMoviesQuery } from '../../services/TMDB';
-import { MovieList, Pagination } from '..';
-import { selectGenreOrCategory } from '../../features/currenteGenreOrCategory';
+import { MovieList, Pagination, FeaturedMovie } from '..';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
@@ -36,6 +35,7 @@ const Movies = () => {
   if (error) return 'An error as ocurred.';
   return (
     <div>
+      <FeaturedMovie movie={data.results[0]} />
       <MovieList movies={data} numberOfMovies={numberOfMovies} />
       <Pagination currentPage={page} setPage={setPage} totalPages={data.total_pages} />
     </div>
