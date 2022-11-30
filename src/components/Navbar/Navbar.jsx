@@ -79,7 +79,7 @@ const Navbar = () => {
                 <Avatar
                   style={{ width: '30px', height: '30px' }}
                   alt="Profile"
-                  src="https://cultureamp.design/static/a489d86dba895745f93a8d1268fe713f/avatar.svg"
+                  src={`https://www.themoviedb.org/t/p/w64_and_h64_face${user?.avatar?.tmdb?.avatar_path}`}
                 />
               </Button>
             )}
